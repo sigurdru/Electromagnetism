@@ -1,0 +1,29 @@
+### Visual Studio Code ###
+.vscode
+settings.json
+
+
+### LaTeX ###
+## Core latex/pdflatex auxiliary files:
+*.aux
+*.out
+*.idx
+*.lof
+*.log
+*.lot
+*.fls
+*.toc
+*.fmt
+*.fot
+*.cb
+*.cb2
+.*.lb
+*.synctex.gz
+*Notes.bib
+
+### DOCONCE ###
+
+
+*.exerinfo
+*.dlog
+

@@ -1,0 +1,130 @@
+===== Exercise: Poisson's Equation =====
+*(Made by Sigurd Sørlie Rustad)*
+
+# #if FORMAT == "pdflatex"
+\noindent
+# #endif
+In this exesrcise we will look at Poisson's Equation.
+!bsubex
+Using Gauss' Law, derive Poisson's Equation.
+!bt
+\begin{equation}
+\nabla^2 V = -\frac{\rho _v}{\epsilon}
+\end{equation}
+!et
+!bsolution
+Gauss' Law on differential form:
+!bt
+\begin{equation}
+\nabla \cdot \mathbf{D} = \rho _v \implies \nabla \cdot \mathbf{E} = \frac{\rho _v}{\epsilon}
+\end{equation}
+!et
+We can then apply the relationship $\mathbf{E} = -\nabla V$, giving:
+!bt
+\begin{equation}
+\nabla \cdot \nabla V= \nabla^2V = -\frac{\rho_ v}{\epsilon} 
+\end{equation}
+!et
+!esolution
+!esubex
+
+!bsubex
+Consider a sylinder with height $h=1\rm{m}$ and radius $r=1\rm{m}$. The inside of the sylinder is hollow, and the walls are very thin. Use Poisson's Equation to find the electric potential on the walls of the sylinder. The bottom of the sylinder has electric potential $V=10\rm{V}$, and the top of the sylinder has zero potential. The sylinder is electrically neutral.
+!bhint
+If you fold the sylinder out you get a square.
+!ehint
+!bsolution
+Since the bottom and top of the sylinder has a constant potential, we know that the potential is only a function of height. We also know that $\rho _v = 0$, which gives:
+!bt
+\begin{align}
+\nabla² V = \frac{d²V}{dh²} = 0 \implies V(h) = Ah + B 
+\end{align}
+!et
+Using boundary conditions we get the solution $V(h) = (-10 \rm{V/m}) h + 10\rm{V}$.
+!esolution
+!esubex
+
+!bsubex
+Find a difference equation that approximates the solution Poisson's Equation, in one dimension.
+!bhint
+Use the approximation
+!bt
+\begin{equation}
+\frac{dV_n}{dx} \approx \frac{V_{n+1}-V_n}{\Delta x}
+\end{equation}
+!et
+!ehint
+!bsolution
+Using the hint we get that
+!bt
+\begin{align}
+\frac{d² V_n}{d x²} &\approx \frac{1}{\Delta x}\bigg(\frac{V_{n+1} - V_n}{\Delta x} - \frac{V_{n+2} - V{n+1}}{\Delta x}\bigg) \\
+&= \frac{V_{n+2}- 2V_{n+1} + V_n}{\Delta x²} = -\frac{\rho _v}{\epsilon} \\
+\implies V_{n+2} &= 2V_{n+1} - V_n - \frac{\rho _v}{\epsilon}\Delta x²
+\end{align}
+!et
+!esolution
+!esubex
+
+!bsubex
+Imagine that we dont know the theoretical solution. We then need to find it numerically. Use the difference equation over to solve Poisson's Equation numerically for the sylinder.
+!bhint
+Notice that you only know the top and bottom condition. You need to test for differen initial conditions until you find a solution that fits.
+!ehint
+!bhint
+To test the initial conditions, you need to compare your result (with the tested initial conditions) with the potential at the bottom of the sylinder (that you know).
+!ehint
+!bhint
+A good testing range is $V_{n+1} \in [10\rm{V}, 8\rm{V}]$.
+!ehint
+!bsolution
+!bt
+\begin{verbatim}import numpy as np
+import numpy as np
+import matplotlib.pyplot as plt
+# Radius
+r = 1
+# circumference
+o = 2*np.pi*r
+# The area we are looking at
+N = int(1e3)
+h = np.linspace(0, 1, N)
+x = np.linspace(0, o, N)
+X, Y = np.meshgrid(x, h)
+V = np.zeros((N, N))
+
+# Setting initial conditions
+V[0, :] = 10
+# Potential at the end of the sylinder
+V_end = 0
+# The potential we are going to test
+Vtest = np.linspace(10, 9, 100)
+# Empty list we are going to fill with results
+result = []
+
+#Here we test for the different initial conditions
+for v in Vtest:
+    V[1, :] = v
+    for i in range(N-2):
+        #Calculating the result given the initial conditions
+        V[i+2, :] = 2*V[i+1, :] - V[i, :]
+    #Fill list with results compered with actual solution
+    result.append(abs(V[-1, 0] - V_end))
+#Find the best match
+index = np.where(np.array(result) == min(result))
+#Set best initial conditions
+V[1, :] = Vtest[index]
+#Find solution with best initial conditions
+for i in range(N-2):
+    V[i+2, :] = 2*V[i+1, :] - V[i, :]
+result.append(abs(V[-1, 0] - V_end))
+
+#Plot the result
+fig, ax = plt.subplots()
+CS = ax.contourf(X, Y, V, levels=100, cmap='cool')
+fig.colorbar(CS)
+plt.show()
+\end{verbatim}
+!et
+!esolution
+!esubex

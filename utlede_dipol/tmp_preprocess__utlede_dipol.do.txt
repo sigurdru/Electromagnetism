@@ -1,0 +1,108 @@
+===== Exercise: Derive field of magnetic dipole =====
+
+*(Made by: Sigurd Sørlie Rustad)*
+
+\noindent
+In this exercise we are going to derive the magnetic field from a magnetic dipole. First we are going  to consider the field from an electric dipole. Lets say we have two oppositely charged particles a distance $d$ from eachother. We place origin between the two particles and the particles are placed along the $z$-axis.
+!bsubex
+Find the electric field in $\mathbf{r} = (x, y, z)$, where $|\mathbf{r}|\gg d$.
+!bsolution
+We know the electric potential for a positive charge in origin to be
+!bt
+\begin{equation}
+V(x, y, z) = \frac{Q}{4\pi \epsilon \sqrt{x² + y² + z²}}
+\end{equation}
+!et
+Using this we can write down the electric potential from the particles.
+!bt
+\begin{equation}
+V(x, y, z) = \frac{1}{4\pi\epsilon}\left[\frac{q}{\sqrt{x² + y² + \big(z-d/2\big)²}} + \frac{-q}{\sqrt{x² + y² + \big(z+d/2\big)²}}\right]
+\end{equation}
+!et
+Because we are looking at the positions where $|\mathbf{r}|\gg d$ We can simplify by inserting $(z-d/2)² = z² + zd + d² \approx z²-zd$. This is called a binomial expansion.
+!bt
+\begin{align}
+\frac{1}{\sqrt{x² + y² + \big(z-d/2\big)²}} \approx \frac{1}{\sqrt{z²-zd +x² + y²}} = \frac{1}{\sqrt{r² - zd}} = \frac{1}{r}\frac{1}{\sqrt{1-\frac{zd}{r²}}}
+\end{align}
+!et
+Using binomial expansion once again we can simplify the term further
+!bt
+\begin{equation}
+\frac{1}{r}\frac{1}{\sqrt{1-\frac{zd}{r²}}} \approx \frac{1}{r}\frac{1}{\sqrt{\big(1-\frac{zd}{2r²}\big)²}} = \frac{1}{r}\frac{1}{1-\frac{zd}{2r²}}
+\end{equation}
+!et
+Lastly we can Taylor expansion the term to get
+!bt
+\begin{equation}
+\frac{1}{r}\frac{1}{1-\frac{zd}{2r²}} \approx \frac{1}{r}\bigg(1 + \frac{zd}{2r²}\bigg)
+\end{equation}
+!et
+Doing this for both terms we get a easy term for the potential
+!bt
+\begin{equation}
+V(\mathbf{r}) = \frac{1}{4\pi\epsilon_0}\frac{z}{|\mathbf{r}|³}qd
+\end{equation}
+!et
+Now to get that term to look like the ordinary electric dipole term, we need to insert some new variables. Notice that the electric dipole is defined as $\mathbf{p} = qd\mathbf{\hat{z}} = q\mathbf{d}$, where $\mathbf{d}$ is the vector pointing between the two particles. Also $z/|\mathbf{r}| = cos(\phi)$ where $\phi$ is the angle between the $y$-axis and $\mathbf{r}$. This gives us the term
+!bt
+\begin{equation}
+\frac{1}{4\pi\epsilon_0}\frac{|\mathbf{p}|cos(\phi)}{|\mathbf{r}|²}
+\end{equation}
+!et
+Last but not least we can use the definition of the dot product to insert $|\mathbf{p}|cos(\phi) = \mathbf{p} \cdot (\mathbf{r}/|\mathbf{r}|)$, giving us the potential of a electric dipole where $|\mathbf{r}|\gg d$.
+!bt
+\begin{equation}
+V(\mathbf{r}) = \frac{1}{4\pi\epsilon_0}\frac{\mathbf{p}\cdot\mathbf{r}}{|\mathbf{r}|³}
+\end{equation}
+!et
+!esolution
+!esubex
+!bsubex
+Use the potential to find the electric field $\mathbf{E}(\mathbf{r})$.
+!bsolution
+We need to solve the equation $\mathbf{E}=-\nabla V$. Then it is easier to work with the expression
+!bt
+\begin{equation}
+V(\mathbf{r}) = \frac{|\mathbf{p}|}{4\pi\epsilon_0}\frac{z}{|\mathbf{r}|³}
+\end{equation}
+!et
+Working through the math, gives us the solution
+!bt
+\begin{equation}
+E_x = \frac{|\mathbf{p}|}{4\pi\epsilon_0}\frac{3zx}{|\mathbf{r}|⁵}\mathbf{\hat{x}} \ \ \wedge \ \ E_y = \frac{|\mathbf{p}|}{4\pi\epsilon_0}\frac{3zy}{|\mathbf{r}|⁵}\mathbf{\hat{y}} \ \ \wedge \ \ E_z = \frac{|\mathbf{p}|}{4\pi\epsilon_0}\bigg(\frac{1}{|\mathbf{r}|³} - \frac{3z²}{|\mathbf{r}|⁵}\bigg)\mathbf{\hat{z}}
+\end{equation}
+!et
+Combining the terms we get our final term
+!bt
+\begin{equation}
+\mathbf{E}(\mathbf{r}) = \frac{3(\mathbf{p}\cdot \mathbf{\hat{r}})\mathbf{\hat{r}} - \mathbf{p}}{4\pi\epsilon_0|\mathbf{r}|³}, \ \ \ \ \mathbf{\hat{r}} = \mathbf{r}/|\mathbf{r}|
+\end{equation}
+!et
+!esolution
+!esubex
+!bsubex
+It turns out that the magnetic field for a dipole has the same as the field for a electric dipole, if you do the necessary substitutions. Do the substitutions and find the magnetic field $\mathbf{B}$.
+!bsolution
+You only need to make two substitutions
+!bt
+\begin{equation}
+\mathbf{p} = \frac{\bm{\mu}}{c²} \ \ \ \ \wedge \ \ \ \ \epsilon_0 = \frac{1}{\mu_0 c²}
+\end{equation}
+!et
+Where $\bm\mu$ is the magnetic momen and $c$ the speed of light. This gives us the final solution
+!bt
+\begin{equation}
+\mathbf{B}(\mathbf{r}) = \frac{\mu_0}{4\pi}\frac{3(\bm{\mu}\cdot\mathbf{\hat{r}})\mathbf{\hat{r}} - \bm{\mu}}{|\mathbf{r}|³}
+\end{equation}
+!et
+It is also possible to find the field through calculating the field fram a charge following a small loop, but this requires a bit more work.
+!esolution
+!esubex
+
+
+
+
+
+
+
+

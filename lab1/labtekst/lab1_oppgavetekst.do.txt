@@ -1,0 +1,30 @@
+TITLE: Quadrupole ion trap
+AUTHOR: Bror Hjemgaard, René Ask og Sigurd Sørlie Rustad
+DATE: today
+
+*In week-exercise (insert week exercise) we studied the Paul trap. Using both theoretical and numerical approximations we managed to trap ionized particles. Although the method worked in in theory, it is no guaranty it will work in practice. That is why, in this exercise we are going to apply the theory and try to build a working Paul trap.*
+
+======= Equipment list =======
+label{title:equip_list}
+Make sure you have all the equipment needed to do the experiment.
+  * Transformer (one of the coils doubles as a voltage source, make sure it is NOT plugged in before the teaching assistant have approved your circuit!)
+  * Green laser pointer
+  * Two $1\rm{M}\Omega$ resistors
+  * Pinch cables
+  * One support stand
+  * Electrical tape
+  * Cinnamon (this is what we are going to use as ionized particles)
+  * Q-tips
+  * 3D printed trap
+
+======= Building the trap =======
+label{title:build}
+First of all we need to set up the circuit. See figure ref{fig:circuit} and set up the circuit you see in the figure. Before plugging anything into the outlet, contact the teaching assistant to make sure everything is correctly set up.
+
+FIGURE: [figurer/circuit, width=800] The figure shows the circuit of the setup. The red squares are the poles that will be charged during the experiment. label{fig:circuit}
+
+In order to better visualize the particles we are going to use the green laser pointer. Use the support stand and point the laser through the center of the ring in the trap.
+
+======= Experimenting =======
+label{title:exp}
+Now that the circuit is correctly set up, we can try to trap some particles. Turn off any light and plug the voltage source into a power outlet. Flip the switch of the voltage source to turn it on, and use a q-tip to feed some cinnamon inside the trap. Do you see trapped particles?

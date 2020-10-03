@@ -1,0 +1,250 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+\newenvironment{doconceexercise}{}{}
+\newcounter{doconceexercisecounter}
+
+
+% ------ header in subexercises ------
+%\newcommand{\subex}[1]{\paragraph{#1}}
+%\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
+\makeatletter
+% 1.5ex is the spacing above the header, 0.5em the spacing after subex title
+\newcommand\subex{\@startsection{paragraph}{4}{\z@}%
+                  {1.5ex\@plus1ex \@minus.2ex}%
+                  {-0.5em}%
+                  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: Kirchoff's circuit laws}
+
+
+In this exercise we are going to look at Kirchoff's laws, and solve problems using linear algebra.
+
+
+\subex{a)}
+Write down Kirchoff's laws.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+1. The sum of voltages around any loop is zero. \\
+2. The sum of currents at any junction is zero.
+
+% --- end solution of exercise ---
+
+\subex{b)}
+The voltages are $U_1 = 10\rm{V}$ and $U_2 = 5\rm{V}$. The resistances are $R_1 = 10\Omega$, $R_2 = 20\Omega$ and $R_3 = 30\Omega$. Using Kirchoff's laws, find the equations needed to solve for the currents. Write it as a matrix equation and use Python to inverse the matrix and find the solution.
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{krets1.png}
+\end{figure}
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+Using the first law on the left-hand loop we get
+\begin{equation}
+U_1 -I_1R_1 - I_3R_3 = 0
+\end{equation}
+Right-hand loop gives
+\begin{equation}
+U_2 + I_2R_2 - I_3R_3 = 0
+\end{equation}
+Using the second law on the top center junction, we get
+\begin{equation}
+I_1 -I_2 - I_3 = 0
+\end{equation}
+We can write the equations as a matrix equation on the form
+\begin{equation}
+\left( \begin{matrix} R_1 & 0 & R_3 \\ 0 & -R_2 & R_3 \\ 1 & -1 & -1 \end{matrix}\right) \left(\begin{matrix}I_1 \\ I_2 \\ I_3\end{matrix}\right) =\left(\begin{matrix}U_1 \\ U_2 \\ 0\end{matrix}\right)
+\end{equation}
+Using the following code
+\begin{verbatim}
+import numpy as np
+R1 = 10  # [ohm]
+R2 = 20  # [ohm]
+R3 = 30  # [ohm]
+U1 = 10  # [V]
+U2 = 5   # [V]
+A = np.array([[R1, 0, R3],[0, -R2, R3],[1, -1, -1]])
+#inverting the matrix A
+Ainv = np.linalg.inv(A)
+B = np.array([10, 5, 0])
+#finding the solution
+C = np.dot(Ainv,B)
+print(C)
+\end{verbatim}
+We found the solutions $I_1 \approx 0.318\rm{A}$, $I_2 \approx 0.091\rm{A}$ and $I_3 \approx 0.227\rm{A}$.
+
+% --- end solution of exercise ---
+
+\subex{c)}
+Do the same for the circuit under as you did for the previous exersice. Use $R_4 = 40\Omega$, $R_5 = 50\Omega$, $R_6 = 60\Omega$, $U_3 = 12\rm{V}$ and $U_4 = 24\rm{V}$. 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.8\textwidth]{krets2.png}
+\end{figure}
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+Notice that we can reuse the equations over, so we only need to find three more equations. Using the first law on the bottom left loop we get
+\begin{equation}
+U_4 + I_4R_4 = 0
+\end{equation}
+Bottom center loop
+\begin{equation}
+I_4R_4 - I_5R_5 = 0
+\end{equation}
+Right loop
+\begin{equation}
+U_2 - U_3 - I_6R_6 + I_5R_5 = 0
+\end{equation}
+We therefore get the matrix equation
+\begin{equation}
+\left( \begin{matrix} R_1 & 0 & R_3 & 0 & 0 & 0 \\ 0 & -R_2 & R_3 & 0 & 0 & 0 \\ 1 & -1 & -1 & 0 & 0 & 0 \\ 0 & 0 & 0 & -R_4 & 0 & 0 \\ 0 & 0 & 0 & R_4 & -R_5 & 0\\ 0 & 0 & 0 & 0 & -R_5 & R_6 \end{matrix}\right) \left(\begin{matrix}I_1 \\ I_2 \\ I_3 \\ I_4 \\ I_5 \\ I_6\end{matrix}\right) =\left(\begin{matrix}U_1 \\ U_2 \\ 0 \\ U_4 \\ 0 \\ U_2 - U_3 \end{matrix}\right)
+\end{equation}
+Using the code
+\begin{verbatim}
+import numpy as np
+R1 = 10  # [ohm]
+R2 = 20  # [ohm]
+R3 = 30  # [ohm]
+R4 = 40  # [ohm]
+R5 = 50  # [ohm]
+R6 = 60  # [ohm]
+U1 = 10  # [V]
+U2 = 5   # [V]
+U3 = 12  # [V]
+U4 = 24   # [V]
+A = np.array([[R1, 0, R3, 0, 0, 0], 
+              [0, -R2, R3, 0, 0, 0], 
+              [1, -1, -1, 0, 0, 0],
+              [0, 0, 0,-R4, 0, 0], 
+              [0, 0, 0, R4, -R5, 0], 
+              [0, 0, 0, 0, -R5, R6]])
+#inverting the matrix A
+Ainv = np.linalg.inv(A)
+B = np.array([U1, U2, 0, U4, 0, U2-U3])
+#finding the solution
+C = np.dot(Ainv, B)
+print(C)
+\end{verbatim}
+We get the solutions $I_1 \approx 0.318\rm{A}$, $I_2 \approx 0.091\rm{A}$, $I_3 \approx 0.227\rm{A}$, $I_4 = -0.6\rm{A}$, $I_5 = -0.48\rm{A}$ and $I_6 \approx -0.517\rm{A}$.
+
+% --- end solution of exercise ---
+
+\end{doconceexercise}
+% --- end exercise ---
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

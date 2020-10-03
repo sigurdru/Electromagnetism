@@ -1,0 +1,290 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+\newenvironment{doconceexercise}{}{}
+\newcounter{doconceexercisecounter}
+
+
+% ------ header in subexercises ------
+%\newcommand{\subex}[1]{\paragraph{#1}}
+%\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
+\makeatletter
+% 1.5ex is the spacing above the header, 0.5em the spacing after subex title
+\newcommand\subex{\@startsection{paragraph}{4}{\z@}%
+                  {1.5ex\@plus1ex \@minus.2ex}%
+                  {-0.5em}%
+                  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: Two particles}
+
+
+In this exercise we are going to animate the movement of two charged particles.
+
+
+\subex{a)}
+Write down Coulomb's law.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+\begin{equation}
+\mathbf{F} = \frac{1}{4\pi \epsilon _0} \frac{q_1q_2}{r²}\hat{\mathbf{r}}
+\end{equation}
+
+% --- end solution of exercise ---
+
+\subex{b)}
+Code a function that takes the postions and charges of two particles, and then returns the force between them.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+\begin{verbatim}
+def F(q1, q2, r1, r2):
+    """
+    This function takes in the positions and charges of two particles,
+    and returns the force.
+    """
+    r21 = r1 - r2
+    R21 = np.linalg.norm(r21, axis=0)
+    F21 = 1/(4*np.pi*eps0)*q1*q2*r21/R21**3
+    return F21
+\end{verbatim}
+
+% --- end solution of exercise ---
+
+\subex{c)}
+Using your numeric method of choice, simulete how the particles interact. It can be a good idea to set $\epsilon _0=1$. Try for different initial conditions, plot the result and see if it makes sence.
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint.}
+You can try the initial conditions:
+\begin{verbatim}
+r0_1 = np.array([0, 0])
+r0_2 = np.array([-1, -1])
+v0_1 = np.array([0, 0])
+v0_2 = np.array([2, 1.5])
+Q1 = 1
+Q2 = 3
+m1 = 0.2
+m2 = 0.1
+eps0 = 1
+dt = 1e-4
+tstart = 0
+tslutt = 2
+\end{verbatim}
+
+% --- end hint in exercise ---
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+Expanding on the code over, I wrote the simulation using Euler-Chromer.
+\begin{verbatim}
+#Define values we are going to use
+r0_1 = np.array([0, 0])
+r0_2 = np.array([-1, -1])
+v0_1 = np.array([0, 0])
+v0_2 = np.array([2, 1.5])
+Q1 = 1
+Q2 = 3
+m1 = 0.2
+m2 = 0.1
+eps0 = 1
+dt = 1e-4
+tstart = 0
+tslutt = 2
+N = int((tslutt - tstart)/dt)
+#Define som arrays we are going to fill
+pos1 = np.zeros((2, N))
+pos2 = np.zeros((2, N))
+vel1 = np.zeros((2, N))
+vel2 = np.zeros((2, N))
+#Set initial conditions
+pos1[:, 0] = r0_1
+pos2[:, 0] = r0_2
+vel1[:, 0] = v0_1
+vel2[:, 0] = v0_2
+for i in range(N-1):
+    """
+    Using Euler-Chromer
+    """
+    a1 = F(Q1, Q2, pos1[:, i], pos2[:, i])/m1
+    a2 = -a1*m1/m2
+    vel1[:, i+1] = a1*dt + vel1[:, i]
+    vel2[:, i+1] = a2*dt + vel2[:, i]
+    pos1[:, i+1] = vel1[:, i+1]*dt + pos1[:, i]
+    pos2[:, i+1] = vel2[:, i+1]*dt + pos2[:, i]
+plt.plot(pos1[0], pos1[1], color='r', \label='particle1')
+plt.plot(pos2[0], pos2[1], color='b', \label='particle2')
+plt.x\label('Posisjon i x-retning')
+plt.y\label('Posision i y-retning')
+plt.legend(loc=1)
+plt.show()
+\end{verbatim}
+
+% --- end solution of exercise ---
+
+\subex{d)}
+Now that you know the positions it can be a good idea to animate the particles to get a better look at the result. Animate the motion of the particles, does the animation agree with your expectations? Try for different initial conditions.
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint.}
+You can use matplotlib to plot the animation.
+\begin{verbatim}
+from matplotlib import animation
+\end{verbatim}
+
+% --- end hint in exercise ---
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+Expanding the code we have written so far.
+\begin{verbatim}
+#Creating the figure we are going to use
+fig = plt.figure()
+ax = plt.axes(xlim=(-2, 2), ylim=(-2, 2))
+#The two particles
+particle1, = ax.plot([], [], 'ro', \label='Particle1')
+particle2, = ax.plot([], [], 'bo', \label='Particle2')
+points = [particle1, particle2]
+def init():
+    #Init function
+    ax.clear
+    return points
+#This adjusts the speed of the animation
+speed = 20
+def animate(i):
+    #The function that animates
+    ax.set_title('Tid = %f' % (i*dt*speed))
+    points[0].set_data(pos1[:, i*speed])
+    points[1].set_data(pos2[:, i*speed])
+    return points
+#Plotting
+anim = animation.FuncAnimation(fig, animate, init_func=init,
+                               frames=int(N/speed), interval=1, blit=False)
+plt.x\label('Position in x-direction')
+plt.y\label('Position in y-direction')
+plt.legend(loc=1)
+plt.show()
+\end{verbatim}
+
+% --- end solution of exercise ---
+
+\end{doconceexercise}
+% --- end exercise ---
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

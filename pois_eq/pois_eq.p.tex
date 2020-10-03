@@ -1,0 +1,276 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+\newenvironment{doconceexercise}{}{}
+\newcounter{doconceexercisecounter}
+
+
+% ------ header in subexercises ------
+%\newcommand{\subex}[1]{\paragraph{#1}}
+%\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
+\makeatletter
+% 1.5ex is the spacing above the header, 0.5em the spacing after subex title
+\newcommand\subex{\@startsection{paragraph}{4}{\z@}%
+                  {1.5ex\@plus1ex \@minus.2ex}%
+                  {-0.5em}%
+                  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: Poisson's Equation}
+
+
+In this exesrcise we will look at Poisson's Equation.
+
+
+\subex{a)}
+Using Gauss' Law, derive Poisson's Equation.
+\begin{equation}
+\nabla^2 V = -\frac{\rho _v}{\epsilon}
+\end{equation}
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+Gauss' Law on differential form:
+\begin{equation}
+\nabla \cdot \mathbf{D} = \rho _v \implies \nabla \cdot \mathbf{E} = \frac{\rho _v}{\epsilon}
+\end{equation}
+We can then apply the relationship $\mathbf{E} = -\nabla V$, giving:
+\begin{equation}
+\nabla \cdot \nabla V= \nabla^2V = -\frac{\rho_ v}{\epsilon} 
+\end{equation}
+
+% --- end solution of exercise ---
+
+\subex{b)}
+Consider a sylinder with height $h=1\rm{m}$ and radius $r=1\rm{m}$. The inside of the sylinder is hollow, and the walls are very thin. Use Poisson's Equation to find the electric potential on the walls of the sylinder. The bottom of the sylinder has electric potential $V=10\rm{V}$, and the top of the sylinder has zero potential. The sylinder is electrically neutral.
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint.}
+If you fold the sylinder out you get a square.
+
+% --- end hint in exercise ---
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+Since the bottom and top of the sylinder has a constant potential, we know that the potential is only a function of height. We also know that $\rho _v = 0$, which gives:
+\begin{align}
+\nabla² V = \frac{d²V}{dh²} = 0 \implies V(h) = Ah + B 
+\end{align}
+Using boundary conditions we get the solution $V(h) = (-10 \rm{V/m}) h + 10\rm{V}$.
+
+% --- end solution of exercise ---
+
+\subex{c)}
+Find a difference equation that approximates the solution Poisson's Equation, in one dimension.
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint.}
+Use the approximation
+\begin{equation}
+\frac{dV_n}{dx} \approx \frac{V_{n+1}-V_n}{\Delta x}
+\end{equation}
+
+% --- end hint in exercise ---
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+Using the hint we get that
+\begin{align}
+\frac{d² V_n}{d x²} &\approx \frac{1}{\Delta x}\bigg(\frac{V_{n+1} - V_n}{\Delta x} - \frac{V_{n+2} - V{n+1}}{\Delta x}\bigg) \\
+&= \frac{V_{n+2}- 2V_{n+1} + V_n}{\Delta x²} = -\frac{\rho _v}{\epsilon} \\
+\implies V_{n+2} &= 2V_{n+1} - V_n - \frac{\rho _v}{\epsilon}\Delta x²
+\end{align}
+
+% --- end solution of exercise ---
+
+\subex{d)}
+Imagine that we dont know the theoretical solution. We then need to find it numerically. Use the difference equation over to solve Poisson's Equation numerically for the sylinder.
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 1.}
+Notice that you only know the top and bottom condition. You need to test for differen initial conditions until you find a solution that fits.
+
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 2.}
+To test the initial conditions, you need to compare your result (with the tested initial conditions) with the potential at the bottom of the sylinder (that you know).
+
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 3.}
+A good testing range is $V_{n+1} \in [10\rm{V}, 8\rm{V}]$.
+
+% --- end hint in exercise ---
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+\begin{verbatim}import numpy as np
+import numpy as np
+import matplotlib.pyplot as plt
+# Radius
+r = 1
+# circumference
+o = 2*np.pi*r
+# The area we are looking at
+N = int(1e3)
+h = np.linspace(0, 1, N)
+x = np.linspace(0, o, N)
+X, Y = np.meshgrid(x, h)
+V = np.zeros((N, N))
+# Setting initial conditions
+V[0, :] = 10
+# Potential at the end of the sylinder
+V_end = 0
+# The potential we are going to test
+Vtest = np.linspace(10, 9, 100)
+# Empty list we are going to fill with results
+result = []
+#Here we test for the different initial conditions
+for v in Vtest:
+    V[1, :] = v
+    for i in range(N-2):
+        #Calculating the result given the initial conditions
+        V[i+2, :] = 2*V[i+1, :] - V[i, :]
+    #Fill list with results compered with actual solution
+    result.append(abs(V[-1, 0] - V_end))
+#Find the best match
+index = np.where(np.array(result) == min(result))
+#Set best initial conditions
+V[1, :] = Vtest[index]
+#Find solution with best initial conditions
+for i in range(N-2):
+    V[i+2, :] = 2*V[i+1, :] - V[i, :]
+result.append(abs(V[-1, 0] - V_end))
+#Plot the result
+fig, ax = plt.subplots()
+CS = ax.contourf(X, Y, V, levels=100, cmap='cool')
+fig.colorbar(CS)
+plt.show()
+\end{verbatim}
+
+% --- end solution of exercise ---
+
+\end{doconceexercise}
+% --- end exercise ---
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

@@ -1,0 +1,227 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+\newenvironment{doconceexercise}{}{}
+\newcounter{doconceexercisecounter}
+
+
+% ------ header in subexercises ------
+%\newcommand{\subex}[1]{\paragraph{#1}}
+%\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
+\makeatletter
+% 1.5ex is the spacing above the header, 0.5em the spacing after subex title
+\newcommand\subex{\@startsection{paragraph}{4}{\z@}%
+                  {1.5ex\@plus1ex \@minus.2ex}%
+                  {-0.5em}%
+                  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: Derive field of magnetic dipole}
+
+
+\emph{(Made by: Sigurd Sørlie Rustad)}
+
+\noindent
+In this exercise we are going to derive the magnetic field from a magnetic dipole. First we are going  to consider the field from an electric dipole. Lets say we have two oppositely charged particles a distance $d$ from eachother. We place origin between the two particles and the particles are placed along the $z$-axis.
+
+
+\subex{a)}
+Find the electric field in $\mathbf{r} = (x, y, z)$, where $|\mathbf{r}|\gg d$.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+We know the electric potential for a positive charge in origin to be
+\begin{equation}
+V(x, y, z) = \frac{Q}{4\pi \epsilon \sqrt{x² + y² + z²}}
+\end{equation}
+Using this we can write down the electric potential from the particles.
+\begin{equation}
+V(x, y, z) = \frac{1}{4\pi\epsilon}\left[\frac{q}{\sqrt{x² + y² + \big(z-d/2\big)²}} + \frac{-q}{\sqrt{x² + y² + \big(z+d/2\big)²}}\right]
+\end{equation}
+Because we are looking at the positions where $|\mathbf{r}|\gg d$ We can simplify by inserting $(z-d/2)² = z² + zd + d² \approx z²-zd$. This is called a binomial expansion.
+\begin{align}
+\frac{1}{\sqrt{x² + y² + \big(z-d/2\big)²}} \approx \frac{1}{\sqrt{z²-zd +x² + y²}} = \frac{1}{\sqrt{r² - zd}} = \frac{1}{r}\frac{1}{\sqrt{1-\frac{zd}{r²}}}
+\end{align}
+Using binomial expansion once again we can simplify the term further
+\begin{equation}
+\frac{1}{r}\frac{1}{\sqrt{1-\frac{zd}{r²}}} \approx \frac{1}{r}\frac{1}{\sqrt{\big(1-\frac{zd}{2r²}\big)²}} = \frac{1}{r}\frac{1}{1-\frac{zd}{2r²}}
+\end{equation}
+Lastly we can Taylor expansion the term to get
+\begin{equation}
+\frac{1}{r}\frac{1}{1-\frac{zd}{2r²}} \approx \frac{1}{r}\bigg(1 + \frac{zd}{2r²}\bigg)
+\end{equation}
+Doing this for both terms we get a easy term for the potential
+\begin{equation}
+V(\mathbf{r}) = \frac{1}{4\pi\epsilon_0}\frac{z}{|\mathbf{r}|³}qd
+\end{equation}
+Now to get that term to look like the ordinary electric dipole term, we need to insert some new variables. Notice that the electric dipole is defined as $\mathbf{p} = qd\mathbf{\hat{z}} = q\mathbf{d}$, where $\mathbf{d}$ is the vector pointing between the two particles. Also $z/|\mathbf{r}| = cos(\phi)$ where $\phi$ is the angle between the $y$-axis and $\mathbf{r}$. This gives us the term
+\begin{equation}
+\frac{1}{4\pi\epsilon_0}\frac{|\mathbf{p}|cos(\phi)}{|\mathbf{r}|²}
+\end{equation}
+Last but not least we can use the definition of the dot product to insert $|\mathbf{p}|cos(\phi) = \mathbf{p} \cdot (\mathbf{r}/|\mathbf{r}|)$, giving us the potential of a electric dipole where $|\mathbf{r}|\gg d$.
+\begin{equation}
+V(\mathbf{r}) = \frac{1}{4\pi\epsilon_0}\frac{\mathbf{p}\cdot\mathbf{r}}{|\mathbf{r}|³}
+\end{equation}
+
+% --- end solution of exercise ---
+
+\subex{b)}
+Use the potential to find the electric field $\mathbf{E}(\mathbf{r})$.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+We need to solve the equation $\mathbf{E}=-\nabla V$. Then it is easier to work with the expression
+\begin{equation}
+V(\mathbf{r}) = \frac{|\mathbf{p}|}{4\pi\epsilon_0}\frac{z}{|\mathbf{r}|³}
+\end{equation}
+Working through the math, gives us the solution
+\begin{equation}
+E_x = \frac{|\mathbf{p}|}{4\pi\epsilon_0}\frac{3zx}{|\mathbf{r}|⁵}\mathbf{\hat{x}} \ \ \wedge \ \ E_y = \frac{|\mathbf{p}|}{4\pi\epsilon_0}\frac{3zy}{|\mathbf{r}|⁵}\mathbf{\hat{y}} \ \ \wedge \ \ E_z = \frac{|\mathbf{p}|}{4\pi\epsilon_0}\bigg(\frac{1}{|\mathbf{r}|³} - \frac{3z²}{|\mathbf{r}|⁵}\bigg)\mathbf{\hat{z}}
+\end{equation}
+Combining the terms we get our final term
+\begin{equation}
+\mathbf{E}(\mathbf{r}) = \frac{3(\mathbf{p}\cdot \mathbf{\hat{r}})\mathbf{\hat{r}} - \mathbf{p}}{4\pi\epsilon_0|\mathbf{r}|³}, \ \ \ \ \mathbf{\hat{r}} = \mathbf{r}/|\mathbf{r}|
+\end{equation}
+
+% --- end solution of exercise ---
+
+\subex{c)}
+It turns out that the magnetic field for a dipole has the same as the field for a electric dipole, if you do the necessary substitutions. Do the substitutions and find the magnetic field $\mathbf{B}$.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+You only need to make two substitutions
+\begin{equation}
+\mathbf{p} = \frac{\bm{\mu}}{c²} \ \ \ \ \wedge \ \ \ \ \epsilon_0 = \frac{1}{\mu_0 c²}
+\end{equation}
+Where $\bm\mu$ is the magnetic momen and $c$ the speed of light. This gives us the final solution
+\begin{equation}
+\mathbf{B}(\mathbf{r}) = \frac{\mu_0}{4\pi}\frac{3(\bm{\mu}\cdot\mathbf{\hat{r}})\mathbf{\hat{r}} - \bm{\mu}}{|\mathbf{r}|³}
+\end{equation}
+It is also possible to find the field through calculating the field fram a charge following a small loop, but this requires a bit more work.
+
+% --- end solution of exercise ---
+
+
+
+
+
+
+
+
+\end{doconceexercise}
+% --- end exercise ---
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

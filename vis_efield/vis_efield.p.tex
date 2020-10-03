@@ -1,0 +1,252 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+\newenvironment{doconceexercise}{}{}
+\newcounter{doconceexercisecounter}
+
+
+% ------ header in subexercises ------
+%\newcommand{\subex}[1]{\paragraph{#1}}
+%\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
+\makeatletter
+% 1.5ex is the spacing above the header, 0.5em the spacing after subex title
+\newcommand\subex{\@startsection{paragraph}{4}{\z@}%
+                  {1.5ex\@plus1ex \@minus.2ex}%
+                  {-0.5em}%
+                  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: Visualize electric field}
+
+
+Here we are going to visualize the electric field from several particles in 2D. We are going to do this in parts.
+
+
+\subex{a)}
+Consider a particle in $(x_1, y_1)$ with charge $Q$, write down the general electric field in position $(x, y)$.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+The vector from the particle and the position you want to evaluate is given by $\mathbf{R} = [x - x_1, y-y_1]$. We can then write the general electric field:
+\begin{equation}
+\mathbf{E} = \frac{Q}{4\pi\epsilon _0\big((x-x_1)^2 + (y-y_1)^2\big)^{3/2}}[x-x_1, y-y_1]
+\end{equation}
+
+% --- end solution of exercise ---
+
+\subex{b)}
+Make a program that takes in position and charge from a particle, a point in space, and returns the electric field vector in that point. Make a vector arrow plot.
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 1.}
+It can be a good idea to scale $\epsilon _0$ so you get reasonable sizes.
+
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 2.}
+Use quiver from matplotlib.pyplot to visualize the field.
+
+% --- end hint in exercise ---
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+\begin{verbatim}
+import numpy as np
+import matplotlib.pyplot as plt
+eps0 = 1 #scaled to get reasonable sizes
+def Efield(pos, Q, x, y):
+    """
+    This function takes in the position and charge of a particle, the position
+    you want to calculate the field, and returns the x- and y-coordinate of
+    the field.
+    """
+    r_eval = np.array([x-pos[0], y-pos[1]])
+    R_eval = np.linalg.norm(r_eval, axis=0)
+    Field = Q/(4*np.pi*eps0*R_eval**3)*r_eval
+    return Field[0], Field[1]
+#The area we are going to be looking at
+x = np.linspace(-10,10,20)
+y = x
+X, Y = np.meshgrid(x,y)
+#The position and charge of the particle
+pos1 = np.array([1, 0])
+Q1 = 1
+#Calculating the electric field
+U, V = Efield(pos1, Q1, X, Y)
+#Plotting
+fig, ax = plt.subplots()
+ax.quiver(X, Y, U, V)
+ax.plot(pos1[0], pos1[1], 'or')
+plt.show()
+\end{verbatim}
+
+% --- end solution of exercise ---
+
+\subex{c)}
+Expand the function you made to take in an arbitrary number of particles and then returns the resulting electric field. Make a vector arrow plot.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+\begin{verbatim}
+eps0 = 1 #scaled to get reasonable sizes
+def Efield_expanded(positions, charges, x, y):
+    """
+    This function takes in positions and charges, positions we want to evaluate,
+    and returns the resulting electric field.
+    It also returns a list with colors that corresponds to the charges of the particles.
+    """
+    Field = 0
+    color = []
+    for pos, Q in zip(positions, charges):
+        r_eval = np.array([x-pos[0], y-pos[1]])
+        R_eval = np.linalg.norm(r_eval, axis=0)
+        Field += Q/(4*np.pi*eps0*R_eval**3)*r_eval
+        if Q > 0:
+            color.append('r')
+        else:
+            color.append('b')
+    return Field[0], Field[1], color
+#Defining positions and charges
+pos1 = np.array([5, 5])
+Q1 = 1
+pos2 = np.array([0, 0])
+Q2 = -1
+pos3 = np.array([-2, -2])
+Q3 = -3
+positions = [pos1, pos2, pos3]
+charges = [Q1, Q2, Q3]
+#The area we are going to be looking at
+x = np.linspace(-10,10,40)
+y = x
+X, Y = np.meshgrid(x, y)
+#calculating the electric field
+U, V, colors = Efield_expanded(positions, charges, X, Y)
+#plotting
+fig, ax = plt.subplots()
+for col, pos in zip(colors, positions):
+    ax.plot(pos[0], pos[1], 'o', color=col)
+ax.quiver(X, Y, U, V)
+plt.show()
+\end{verbatim}
+
+% --- end solution of exercise ---
+
+\end{doconceexercise}
+% --- end exercise ---
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

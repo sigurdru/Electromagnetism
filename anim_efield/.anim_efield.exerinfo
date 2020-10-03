@@ -1,0 +1,180 @@
+
+# Information about all exercises in the file anim_efield.do.txt.
+# The information can be loaded into a Python list of dicts by
+#
+# f = open('.anim_efield.exerinfo', 'r')
+# exer = eval(f.read())
+#
+[{'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': None,
+  'no': 1,
+  'solution': '',
+  'solution_file': None,
+  'subex': [{'answer': '',
+             'file': None,
+             'hints': [],
+             'solution': '!bt\n'
+                         '\\begin{equation}\n'
+                         '\\mathbf{F} = \\frac{1}{4\\pi \\epsilon _0} '
+                         '\\frac{q_1q_2}{r²}\\hat{\\mathbf{r}}\n'
+                         '\\end{equation}\n'
+                         '\n'
+                         '!et',
+             'text': "Write down Coulomb's law."},
+            {'answer': '',
+             'file': None,
+             'hints': [],
+             'solution': '!bt\n'
+                         '\\begin{verbatim}\n'
+                         'def F(q1, q2, r1, r2):\n'
+                         '    """\n'
+                         '    This function takes in the positions and charges '
+                         'of two particles,\n'
+                         '    and returns the force.\n'
+                         '    """\n'
+                         '    r21 = r1 - r2\n'
+                         '    R21 = np.linalg.norm(r21, axis=0)\n'
+                         '    F21 = 1/(4*np.pi*eps0)*q1*q2*r21/R21**3\n'
+                         '    return F21\n'
+                         '\\end{verbatim}\n'
+                         '\n'
+                         '!et',
+             'text': 'Code a function that takes the postions and charges of '
+                     'two particles, and then returns the force between them.'},
+            {'answer': '',
+             'file': None,
+             'hints': ['You can try the initial conditions:\n'
+                       '!bt\n'
+                       '\\begin{verbatim}\n'
+                       'r0_1 = np.array([0, 0])\n'
+                       'r0_2 = np.array([-1, -1])\n'
+                       'v0_1 = np.array([0, 0])\n'
+                       'v0_2 = np.array([2, 1.5])\n'
+                       'Q1 = 1\n'
+                       'Q2 = 3\n'
+                       'm1 = 0.2\n'
+                       'm2 = 0.1\n'
+                       'eps0 = 1\n'
+                       'dt = 1e-4\n'
+                       'tstart = 0\n'
+                       'tslutt = 2\n'
+                       '\\end{verbatim}\n'
+                       '\n'
+                       '!et'],
+             'solution': 'Expanding on the code over, I wrote the simulation '
+                         'using Euler-Chromer.\n'
+                         '!bt\n'
+                         '\\begin{verbatim}\n'
+                         '#Define values we are going to use\n'
+                         'r0_1 = np.array([0, 0])\n'
+                         'r0_2 = np.array([-1, -1])\n'
+                         'v0_1 = np.array([0, 0])\n'
+                         'v0_2 = np.array([2, 1.5])\n'
+                         'Q1 = 1\n'
+                         'Q2 = 3\n'
+                         'm1 = 0.2\n'
+                         'm2 = 0.1\n'
+                         'eps0 = 1\n'
+                         'dt = 1e-4\n'
+                         'tstart = 0\n'
+                         'tslutt = 2\n'
+                         'N = int((tslutt - tstart)/dt)\n'
+                         '#Define som arrays we are going to fill\n'
+                         'pos1 = np.zeros((2, N))\n'
+                         'pos2 = np.zeros((2, N))\n'
+                         'vel1 = np.zeros((2, N))\n'
+                         'vel2 = np.zeros((2, N))\n'
+                         '#Set initial conditions\n'
+                         'pos1[:, 0] = r0_1\n'
+                         'pos2[:, 0] = r0_2\n'
+                         'vel1[:, 0] = v0_1\n'
+                         'vel2[:, 0] = v0_2\n'
+                         'for i in range(N-1):\n'
+                         '    """\n'
+                         '    Using Euler-Chromer\n'
+                         '    """\n'
+                         '    a1 = F(Q1, Q2, pos1[:, i], pos2[:, i])/m1\n'
+                         '    a2 = -a1*m1/m2\n'
+                         '    vel1[:, i+1] = a1*dt + vel1[:, i]\n'
+                         '    vel2[:, i+1] = a2*dt + vel2[:, i]\n'
+                         '    pos1[:, i+1] = vel1[:, i+1]*dt + pos1[:, i]\n'
+                         '    pos2[:, i+1] = vel2[:, i+1]*dt + pos2[:, i]\n'
+                         "plt.plot(pos1[0], pos1[1], color='r', "
+                         "label='particle1')\n"
+                         "plt.plot(pos2[0], pos2[1], color='b', "
+                         "label='particle2')\n"
+                         "plt.xlabel('Posisjon i x-retning')\n"
+                         "plt.ylabel('Posision i y-retning')\n"
+                         'plt.legend(loc=1)\n'
+                         'plt.show()\n'
+                         '\\end{verbatim}\n'
+                         '\n'
+                         '!et',
+             'text': 'Using your numeric method of choice, simulete how the '
+                     'particles interact. It can be a good idea to set '
+                     '$\\epsilon _0=1$. Try for different initial conditions, '
+                     'plot the result and see if it makes sence.'},
+            {'answer': '',
+             'file': None,
+             'hints': ['You can use matplotlib to plot the animation.\n'
+                       '!bt\n'
+                       '\\begin{verbatim}\n'
+                       'from matplotlib import animation\n'
+                       '\\end{verbatim}\n'
+                       '\n'
+                       '!et'],
+             'solution': 'Expanding the code we have written so far.\n'
+                         '!bt\n'
+                         '\\begin{verbatim}\n'
+                         '#Creating the figure we are going to use\n'
+                         'fig = plt.figure()\n'
+                         'ax = plt.axes(xlim=(-2, 2), ylim=(-2, 2))\n'
+                         '#The two particles\n'
+                         "particle1, = ax.plot([], [], 'ro', "
+                         "label='Particle1')\n"
+                         "particle2, = ax.plot([], [], 'bo', "
+                         "label='Particle2')\n"
+                         'points = [particle1, particle2]\n'
+                         'def init():\n'
+                         '    #Init function\n'
+                         '    ax.clear\n'
+                         '    return points\n'
+                         '#This adjusts the speed of the animation\n'
+                         'speed = 20\n'
+                         'def animate(i):\n'
+                         '    #The function that animates\n'
+                         "    ax.set_title('Tid = %f' % (i*dt*speed))\n"
+                         '    points[0].set_data(pos1[:, i*speed])\n'
+                         '    points[1].set_data(pos2[:, i*speed])\n'
+                         '    return points\n'
+                         '#Plotting\n'
+                         'anim = animation.FuncAnimation(fig, animate, '
+                         'init_func=init,\n'
+                         '                               frames=int(N/speed), '
+                         'interval=1, blit=False)\n'
+                         "plt.xlabel('Position in x-direction')\n"
+                         "plt.ylabel('Position in y-direction')\n"
+                         'plt.legend(loc=1)\n'
+                         'plt.show()\n'
+                         '\\end{verbatim}\n'
+                         '\n'
+                         '!et',
+             'text': 'Now that you know the positions it can be a good idea to '
+                     'animate the particles to get a better look at the '
+                     'result. Animate the motion of the particles, does the '
+                     'animation agree with your expectations? Try for '
+                     'different initial conditions.'}],
+  'text': 'In this exercise we are going to animate the movement of two '
+          'charged particles.',
+  'title': 'Two particles',
+  'type': 'Exercise',
+  'type_visible': True}]

@@ -1,0 +1,197 @@
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \label{...} with backslash
+    (label{...} has no backslash in DocOnce syntax)
+\label{hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+ERROR: 2 !bsol do not match 3 !esol directives
+
+
+Two !esol after each other!
+
+!esolution
+!esolution
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+ERROR: 2 !bsubex do not match 1 !esubex directives
+Missing !esubex after final !bsubex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \label{...} with backslash
+    (label{...} has no backslash in DocOnce syntax)
+\label{fig:hemisphere}
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \label{...} with backslash
+    (label{...} has no backslash in DocOnce syntax)
+\label{fig:hemisphere}
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \label{...} with backslash
+    (label{...} has no backslash in DocOnce syntax)
+\label{fig:hemisphere}
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** error in math equation: command
+end{equation}
+is not inside !bt - !et environment
+\begin{equation}
+d\mathhbf{E} = \frac{1}{4\pi\epsilon_0}\frac{\rho}{R²}\hat{r}
+!et
+\end{equation}
+Where $\hat{r}$ is a unit vector pointing from the surface element to the origin. Notice that because we are working with a sphere, the distance from any surface element to the origin is the same. Now because of symmetry we only need to look at the component in z-direction (any x- and y-component cancel out). Therefore we get the following expression:
+!bt
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in halvkule.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  halvkule.do.txt > tmp_preprocess__halvkule.do.txt
+translating doconce text in tmp_preprocess__halvkule.do.txt to pdflatex
+
+*** warning: found \ref{...} with backslash
+    (ref{...} has no backslash in DocOnce syntax)
+\ref{fig:hemisphere}
+
+*** Exercise: Field from a hemisphere shell
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+*** error: figure file "fig-electricfield/halvkule.png" does not exist!

@@ -1,0 +1,130 @@
+===== Exercise: Kirchoff's circuit laws =====
+*(Made by Sigurd Sørlie Rustad)*
+
+# #if FORMAT == "pdflatex"
+\noindent
+# #endif
+In this exercise we are going to look at Kirchoff's laws, and solve problems using linear algebra.
+!bsubex
+Write down Kirchoff's laws.
+!bsolution
+1. The sum of voltages around any loop is zero. \\
+2. The sum of currents at any junction is zero.
+!esolution
+!esubex
+
+!bsubex
+The voltages are $U_1 = 10\rm{V}$ and $U_2 = 5\rm{V}$. The resistances are $R_1 = 10\Omega$, $R_2 = 20\Omega$ and $R_3 = 30\Omega$. Using Kirchoff's laws, find the equations needed to solve for the currents. Write it as a matrix equation and use Python to inverse the matrix and find the solution.
+
+FIGURE:[fig-circuits/kirchoff_krets1, width=600 frac=1.0]
+
+!bsolution
+Using the first law on the left-hand loop we get
+!bt
+\begin{equation}
+U_1 -I_1R_1 - I_3R_3 = 0
+\end{equation}
+!et
+Right-hand loop gives
+!bt
+\begin{equation}
+U_2 + I_2R_2 - I_3R_3 = 0
+\end{equation}
+!et
+Using the second law on the top center junction, we get
+!bt
+\begin{equation}
+I_1 -I_2 - I_3 = 0
+\end{equation}
+!et
+We can write the equations as a matrix equation on the form
+!bt
+\begin{equation}
+\left( \begin{matrix} R_1 & 0 & R_3 \\ 0 & -R_2 & R_3 \\ 1 & -1 & -1 \end{matrix}\right) \left(\begin{matrix}I_1 \\ I_2 \\ I_3\end{matrix}\right) =\left(\begin{matrix}U_1 \\ U_2 \\ 0\end{matrix}\right)
+\end{equation}
+!et
+Using the following code
+!bt
+\begin{verbatim}
+import numpy as np
+R1 = 10  # [ohm]
+R2 = 20  # [ohm]
+R3 = 30  # [ohm]
+U1 = 10  # [V]
+U2 = 5   # [V]
+A = np.array([[R1, 0, R3],[0, -R2, R3],[1, -1, -1]])
+#inverting the matrix A
+Ainv = np.linalg.inv(A)
+
+B = np.array([10, 5, 0])
+#finding the solution
+C = np.dot(Ainv,B)
+print(C)
+\end{verbatim}
+!et
+We found the solutions $I_1 \approx 0.318\rm{A}$, $I_2 \approx 0.091\rm{A}$ and $I_3 \approx 0.227\rm{A}$.
+!esolution
+!esubex
+
+!bsubex
+Do the same for the circuit under as you did for the previous exersice. Use $R_4 = 40\Omega$, $R_5 = 50\Omega$, $R_6 = 60\Omega$, $U_3 = 12\rm{V}$ and $U_4 = 24\rm{V}$. 
+
+FIGURE:[fig-circuits/kirchoff_krets2, width=600 frac=1.0]
+
+!bsolution
+Notice that we can reuse the equations over, so we only need to find three more equations. Using the first law on the bottom left loop we get
+!bt
+\begin{equation}
+U_4 + I_4R_4 = 0
+\end{equation}
+!et
+Bottom center loop
+!bt
+\begin{equation}
+I_4R_4 - I_5R_5 = 0
+\end{equation}
+!et
+Right loop
+!bt
+\begin{equation}
+U_2 - U_3 - I_6R_6 + I_5R_5 = 0
+\end{equation}
+!et
+We therefore get the matrix equation
+!bt
+\begin{equation}
+\left( \begin{matrix} R_1 & 0 & R_3 & 0 & 0 & 0 \\ 0 & -R_2 & R_3 & 0 & 0 & 0 \\ 1 & -1 & -1 & 0 & 0 & 0 \\ 0 & 0 & 0 & -R_4 & 0 & 0 \\ 0 & 0 & 0 & R_4 & -R_5 & 0\\ 0 & 0 & 0 & 0 & -R_5 & R_6 \end{matrix}\right) \left(\begin{matrix}I_1 \\ I_2 \\ I_3 \\ I_4 \\ I_5 \\ I_6\end{matrix}\right) =\left(\begin{matrix}U_1 \\ U_2 \\ 0 \\ U_4 \\ 0 \\ U_2 - U_3 \end{matrix}\right)
+\end{equation}
+!et
+Using the code
+!bt
+\begin{verbatim}
+import numpy as np
+R1 = 10  # [ohm]
+R2 = 20  # [ohm]
+R3 = 30  # [ohm]
+R4 = 40  # [ohm]
+R5 = 50  # [ohm]
+R6 = 60  # [ohm]
+U1 = 10  # [V]
+U2 = 5   # [V]
+U3 = 12  # [V]
+U4 = 24   # [V]
+A = np.array([[R1, 0, R3, 0, 0, 0], 
+              [0, -R2, R3, 0, 0, 0], 
+              [1, -1, -1, 0, 0, 0],
+              [0, 0, 0,-R4, 0, 0], 
+              [0, 0, 0, R4, -R5, 0], 
+              [0, 0, 0, 0, -R5, R6]])
+#inverting the matrix A
+Ainv = np.linalg.inv(A)
+
+B = np.array([U1, U2, 0, U4, 0, U2-U3])
+#finding the solution
+C = np.dot(Ainv, B)
+print(C)
+\end{verbatim}
+!et
+We get the solutions $I_1 \approx 0.318\rm{A}$, $I_2 \approx 0.091\rm{A}$, $I_3 \approx 0.227\rm{A}$, $I_4 = -0.6\rm{A}$, $I_5 = -0.48\rm{A}$ and $I_6 \approx -0.517\rm{A}$.
+!esolution
+!esubex

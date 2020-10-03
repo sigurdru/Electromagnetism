@@ -1,0 +1,66 @@
+
+# Information about all exercises in the file magnet_on_spring.do.txt.
+# The information can be loaded into a Python list of dicts by
+#
+# f = open('.magnet_on_spring.exerinfo', 'r')
+# exer = eval(f.read())
+#
+[{'answer': '',
+  'chapter_exercise': None,
+  'chapter_no': None,
+  'chapter_title': None,
+  'chapter_type': None,
+  'closing_remarks': '',
+  'file': None,
+  'heading': '=====',
+  'hints': [],
+  'keywords': None,
+  'label': None,
+  'no': 1,
+  'solution': '',
+  'solution_file': None,
+  'subex': [{'answer': '',
+             'file': None,
+             'hints': [],
+             'solution': 'Using the right hand rule the solenoid will create a '
+                         'north pole above it, repelling the magnet (the '
+                         'magnet is forced upward).',
+             'text': 'Considering the scenario in figure \\ref{fig:figure}, '
+                     'what happens to the magnet when the current is running '
+                     'through the solenoid?'},
+            {'answer': '',
+             'file': None,
+             'hints': [],
+             'solution': 'If there is no current through the solenoid there '
+                         'wont be any magnetic force acting on the magnet, '
+                         'therefore it will lower a bit until the '
+                         'gravitational force and the force from the spring '
+                         'are in equilibrium.',
+             'text': 'Lets say we short the circuit so there is no current '
+                     'going through the solenoid, what happens to the magnet?'},
+            {'answer': '',
+             'file': None,
+             'hints': [],
+             'solution': 'Again using the right hand rule, the solenoid will '
+                         'create a south pole above it, and this time '
+                         'attracting the magnet.',
+             'text': 'Describe what happens if the current changes direction, '
+                     'what happens to the magnet then?'},
+            {'answer': '',
+             'file': None,
+             'hints': [],
+             'solution': 'Use AC instead of DC.',
+             'text': 'Is there any way to make the magnet oscillate up and '
+                     'down?'}],
+  'text': '*(Made by: Sigurd Sørlie Rustad)*\n'
+          '\n'
+          '\\noindent\n'
+          'Consider the scenario in figure \\ref{fig:figure}. In this exercise '
+          'we are going to discuss what happens to the magnet when the current '
+          'runs through the solenoid.\n'
+          'FIGURE:[magnet_on_spring.png, width=600 frac=0.8] Magnet held by a '
+          'spring over a solenoid. The solenoid i connected to a bettery. '
+          'label{fig:figure}',
+  'title': 'Magnet hanging from a spring',
+  'type': 'Exercise',
+  'type_visible': True}]

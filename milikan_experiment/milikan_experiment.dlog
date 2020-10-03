@@ -1,0 +1,98 @@
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in milikan_experiment.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in milikan_experiment.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in milikan_experiment.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+*** error: reference ref{https://en.wikipedia.org/wiki/Oil_drop_experiment} to non-defined label
+    run the generated script tmp_missing_labels.sh
+    to search for these missing labels!
+
+Causes of missing labels:
+1: label is defined in another document. Use generalized references
+   ref[][][], or use --allow_refs_to_external_docs (to ignore this error)
+   (if generalized reference and this error occur: syntax of generalized
+   reference is wrong!)
+2: preprocessor if-else has left the label out
+3: forgotten to define the label
+
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in milikan_experiment.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in milikan_experiment.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in milikan_experiment.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in milikan_experiment.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+output in milikan_experiment.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+figure file milikan_experiment:
+    can use milikan_experiment.png for format pdflatex
+output in milikan_experiment.p.tex
+running preprocess -DFORMAT=pdflatex -DDEVICE=screen  milikan_experiment.do.txt > tmp_preprocess__milikan_experiment.do.txt
+translating doconce text in tmp_preprocess__milikan_experiment.do.txt to pdflatex
+
+*** Exercise: Milikan oil drop experiment
+    label{None}
+    could be Problem (no refs beyond the exercise itself)
+found info about 1 exercises
+figure file milikan_experiment:
+    can use milikan_experiment.png for format pdflatex
+output in milikan_experiment.p.tex

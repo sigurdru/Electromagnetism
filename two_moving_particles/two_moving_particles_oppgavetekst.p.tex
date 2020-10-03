@@ -1,0 +1,242 @@
+%%
+%% Automatically generated file from DocOnce source
+%% (https://github.com/hplgit/doconce/)
+%%
+%%
+% #ifdef PTEX2TEX_EXPLANATION
+%%
+%% The file follows the ptex2tex extended LaTeX format, see
+%% ptex2tex: http://code.google.com/p/ptex2tex/
+%%
+%% Run
+%%      ptex2tex myfile
+%% or
+%%      doconce ptex2tex myfile
+%%
+%% to turn myfile.p.tex into an ordinary LaTeX file myfile.tex.
+%% (The ptex2tex program: http://code.google.com/p/ptex2tex)
+%% Many preprocess options can be added to ptex2tex or doconce ptex2tex
+%%
+%%      ptex2tex -DMINTED myfile
+%%      doconce ptex2tex myfile envir=minted
+%%
+%% ptex2tex will typeset code environments according to a global or local
+%% .ptex2tex.cfg configure file. doconce ptex2tex will typeset code
+%% according to options on the command line (just type doconce ptex2tex to
+%% see examples). If doconce ptex2tex has envir=minted, it enables the
+%% minted style without needing -DMINTED.
+% #endif
+
+% #define PREAMBLE
+
+% #ifdef PREAMBLE
+%-------------------- begin preamble ----------------------
+
+\documentclass[%
+oneside,                 % oneside: electronic viewing, twoside: printing
+final,                   % draft: marks overfull hboxes, figures with paths
+10pt]{article}
+
+\listfiles               %  print all files needed to compile this document
+
+\usepackage{relsize,makeidx,color,setspace,amsmath,amsfonts,amssymb}
+\usepackage[table]{xcolor}
+\usepackage{bm,ltablex,microtype}
+
+\usepackage[pdftex]{graphicx}
+
+\usepackage[T1]{fontenc}
+%\usepackage[latin1]{inputenc}
+\usepackage{ucs}
+\usepackage[utf8x]{inputenc}
+
+\usepackage{lmodern}         % Latin Modern fonts derived from Computer Modern
+
+% Hyperlinks in PDF:
+\definecolor{linkcolor}{rgb}{0,0,0.4}
+\usepackage{hyperref}
+\hypersetup{
+    breaklinks=true,
+    colorlinks=true,
+    linkcolor=linkcolor,
+    urlcolor=linkcolor,
+    citecolor=black,
+    filecolor=black,
+    %filecolor=blue,
+    pdfmenubar=true,
+    pdftoolbar=true,
+    bookmarksdepth=3   % Uncomment (and tweak) for PDF bookmarks with more levels than the TOC
+    }
+%\hyperbaseurl{}   % hyperlinks are relative to this root
+
+\setcounter{tocdepth}{2}  % levels in table of contents
+
+% prevent orhpans and widows
+\clubpenalty = 10000
+\widowpenalty = 10000
+
+\newenvironment{doconceexercise}{}{}
+\newcounter{doconceexercisecounter}
+
+
+% ------ header in subexercises ------
+%\newcommand{\subex}[1]{\paragraph{#1}}
+%\newcommand{\subex}[1]{\par\vspace{1.7mm}\noindent{\bf #1}\ \ }
+\makeatletter
+% 1.5ex is the spacing above the header, 0.5em the spacing after subex title
+\newcommand\subex{\@startsection{paragraph}{4}{\z@}%
+                  {1.5ex\@plus1ex \@minus.2ex}%
+                  {-0.5em}%
+                  {\normalfont\normalsize\bfseries}}
+\makeatother
+
+
+% --- end of standard preamble for documents ---
+
+
+% insert custom LaTeX commands...
+
+\raggedbottom
+\makeindex
+\usepackage[totoc]{idxlayout}   % for index in the toc
+\usepackage[nottoc]{tocbibind}  % for references/bibliography in the toc
+
+%-------------------- end preamble ----------------------
+
+\begin{document}
+
+% matching end for #ifdef PREAMBLE
+% #endif
+
+\newcommand{\exercisesection}[1]{\subsection*{#1}}
+
+
+% ------------------- main content ----------------------
+
+
+
+% --- begin exercise ---
+\begin{doconceexercise}
+\refstepcounter{doconceexercisecounter}
+
+\exercisesection{Exercise \thedoconceexercisecounter: Force between two moving particles}
+
+
+Here we are going to visualize the magnetic force between two moving particles, in 3D. First we need to find the magnetic force between the two particles.
+
+
+\subex{a)}
+Write down the equation the for magnetic force between two moving particles.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+\begin{equation}
+\mathbf{F}_{\rm{from 1 on 2}} = \frac{\mu_0}{4\pi}\frac{Q_2\mathbf{v}_2\times\big(Q_1\mathbf{v}_1\times\mathbf{R}\big)}{R^3}
+\end{equation}
+
+% --- end solution of exercise ---
+
+\subex{b)}
+Write a function (in Python or MatLab) that takes in the positions of the particles, their charges and their velocities, and outputs the magnetic force from one of the particles on the other.
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+\begin{verbatim}
+def Magnetic_force(r1, r2, v1, v2, Q1, Q2):
+    #Returns the magnetic force from between two moving particles
+    r = r2 - r1
+    R = np.linalg.norm(r)
+    part1 = mu0/(4*np.pi*R**2)*Q2*v2
+    part2 = np.cross(Q1*v1,r/R)
+    F = np.cross(part1,part2)
+    return F
+\end{verbatim}
+Note that you have to import NumPy and assign the value of the permeability of vacuum in order for this to work.
+
+% --- end solution of exercise ---
+
+\subex{c)}
+Plot the velocity vectors for both particles and the force applied on one of the particles. Try for different initial conditions. Do you get what you expected?
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 1.}
+To get reasonable sizes use a scaled version for the marmeability of vacuum.
+
+% --- end hint in exercise ---
+
+% --- begin hint in exercise ---
+
+\paragraph{Hint 2.}
+Reasonable initial conditions are: $\mu_0 = 1$, $Q_1 = 1$, $Q_2=2$, $\mathbf{v}_1=[0, -4, 0]$, $\mathbf{v}_2=[0, 4, 0]$, $\mathbf{r}_1=[0, 0, 0]$ and $\mathbf{r}_2=[1, 0, 0]$.
+
+% --- end hint in exercise ---
+
+
+% --- begin solution of exercise ---
+\paragraph{Solution.}
+\begin{verbatim}
+#Complicated initial conditions
+# v1_0 = np.array([1,2,3]) #initial velocity of particle 1
+# v2_0 = np.array([-1,-5,5]) #initial velocity of particle 2
+# r1 = np.array([0,0,0]) #initial position of particle 1
+# r2 = np.array([1,0,0]) #initial position of particle 2
+#Easy initial conditions
+v1_0 = np.array([0, -4, 0])  # initial velocity of particle 1
+v2_0 = np.array([0, 4, 0]) #initial velocity of particle 2
+r1 = np.array([0, 0, 0]) #initial position of particle 1
+r2 = np.array([1, 0, 0]) #initial position of particle 2
+Q1 = 1 #charge of particle 1
+Q2 = 2 #charge of particle 2
+#calculate the magnetic force between particle 1 and 2
+F12 = Magnetic_force(r1, r2, v1_0, v2_0, Q1, Q2)
+#The data we are going to plot
+positions = np.array([r1,r2,r2])
+vectors = np.array([v1_0, v2_0, F12])
+#\labels and colors we are going to use
+\labels = ['Velocity particle 1', 
+          'Velocity particle 2',
+          'Magnetic force on particle 2']
+colors = ['r', 'g', 'b']
+#creating the figure we are going to use
+fig = plt.figure()
+ax = fig.add_subplot(111, projection = '3d')
+#Plotting velocity and force vectors
+for i in range(3):
+    ax.quiver(positions[i, 0], positions[i, 1], positions[i, 2],
+              vectors[i, 0], vectors[i, 1], vectors[i, 2], 
+              color=colors[i], \label=\labels[i])
+#Plotting the postions of the particles
+ax.scatter(r1[0], r1[1], r1[2], color='r', \label='Position particle 1')
+ax.scatter(r2[0], r2[1], r2[2], color='g', \label='Position particle 2')
+#setting the axis
+ax.set_xlim([-5, 5])
+ax.set_ylim([-5, 5])
+ax.set_zlim([-5, 5])
+#\labeling the axis
+ax.set_x\label('x-axis')
+ax.set_y\label('y-axis')
+ax.set_z\label('z-axis')
+#showing the plot
+ax.legend()
+plt.show()
+\end{verbatim}
+
+% --- end solution of exercise ---
+
+
+
+
+
+\end{doconceexercise}
+% --- end exercise ---
+
+
+% ------------------- end of main content ---------------
+
+% #ifdef PREAMBLE
+\end{document}
+% #endif
+

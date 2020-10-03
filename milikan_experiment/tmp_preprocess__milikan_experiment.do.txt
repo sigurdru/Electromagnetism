@@ -1,0 +1,41 @@
+===== Exercise: Milikan oil drop experiment =====
+*(Made by: Sigurd Sørlie Rustad)*
+
+\noindent
+*In 1909 Robert A. Milikan and Harvey Fletcher tried to measure the elementary electric charge. They did this by measuring the electric field needed to levetate a ionized oil drop. They found the elementary electric charge to be 1.5924(17)x10⁻¹⁹, about 0.6% difference from the current value.*
+
+\noindent
+(https://en.wikipedia.org/wiki/Oil\_drop\_experiment)
+
+\noindent
+In this exercise we are going to do something that resembles the Milkan oil drop experiment. consider the setup shown on the figure under. The oil drop is in equilibrium and the mass is 4.9X10⁻¹⁵kg.
+
+FIGURE:[milikan_experiment, width=600 frac=1.0]
+
+!bsubex
+Draw a sketch to show the forces acting on the oil drop.
+!bsolution
+There is an electrostatic force pointing upwords and gravitational force down. They are the same size.
+!esolution
+!esubex
+
+!bsubex
+What is the sign of the charge on the oil drop.
+!bsolution
+Negative
+!esolution
+!esubex
+
+!bsubex
+Find the total charge on the oil drop.
+!bsolution
+4.8X10⁻¹⁹C
+!esolution
+!esubex
+
+!bsubex
+How many electrons does that amount to?
+!bsolution
+3
+!esolution
+!esubex
